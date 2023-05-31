@@ -1,7 +1,8 @@
 package lb
 
 import (
-	"io/ioutil"
+	"io"
+	"log"
 	"net/http"
 	"strings"
 	"sync"
@@ -20,7 +21,7 @@ func NewWorker() *Worker {
 
 func processReturn(result *http.Response) SDSLBRequest {
 	defer result.Body.Close()
-	body, err := ioutil.ReadAll(result.Body)
+	body, err := io.ReadAll(result.Body)
 	if err != nil {
 		return NewWorkerRequest(http.StatusInternalServerError, result.Header, []byte(err.Error()))
 	}
