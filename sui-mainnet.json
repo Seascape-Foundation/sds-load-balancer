@@ -1,0 +1,61 @@
+{
+    "general": {
+        "maxProcs": 4,
+        "workerPoolSize": 10
+    },
+    "frontends" : [
+        {
+            "name" : "SuiMainnet",
+            "host" : "127.0.0.1",
+            "port" : 8089,
+            "route" : "/",
+            "timeout" : 5000,
+            
+            "backends" : [
+                {
+                    "name" : "AllThatNode",
+                    "address" : "https://sui-mainnet-rpc.allthatnode.com",
+                    "heartbeat" : "https://sui-mainnet-rpc.allthatnode.com",
+                    "inactiveAfter" : 3,
+                    "heartbeatTime" : 5000,
+                    "retryTime" : 5000
+                },{
+                    "name" : "TestnetPride",
+                    "address" : "https://sui-rpc-mainnet.testnet-pride.com",
+                    "heartbeat" : "https://sui-rpc-mainnet.testnet-pride.com",
+                    "inactiveAfter" : 3,
+                    "heartbeatTime" : 5000,
+                    "retryTime" : 5000
+                },{
+                    "name" : "nodeinfra",
+                    "address" : "https://sui-mainnet.nodeinfra.com",
+                    "heartbeat" : "https://sui-mainnet.nodeinfra.com",
+                    "inactiveAfter" : 3,
+                    "heartbeatTime" : 5000,
+                    "retryTime" : 5000
+                },{
+                    "name" : "chainbase",
+                    "address" : "https://mainnet-rpc.sui.chainbase.online",
+                    "heartbeat" : "https://mainnet-rpc.sui.chainbase.online",
+                    "inactiveAfter" : 3,
+                    "heartbeatTime" : 5000,
+                    "retryTime" : 5000
+                },                {
+                    "name" : "cosmostation",
+                    "address" : "https://sui-mainnet-us-2.cosmostation.io",
+                    "heartbeat" : "https://sui-mainnet-us-2.cosmostation.io",
+                    "inactiveAfter" : 3,
+                    "heartbeatTime" : 5000,
+                    "retryTime" : 5000
+                },{
+                    "name" : "blockvision",
+                    "address" : "https://sui-mainnet-endpoint.blockvision.org",
+                    "heartbeat" : "https://sui-mainnet-endpoint.blockvision.org",
+                    "inactiveAfter" : 3,
+                    "heartbeatTime" : 5000,
+                    "retryTime" : 5000
+                }
+            ]
+        }
+    ]
+}
