@@ -86,6 +86,11 @@ func (s *SDSLBRequest) HijackWebSocket(w http.ResponseWriter, r *http.Request) {
 	}
 
 	frontendConn, buffer, err := hj.Hijack()
+	if err != nil {
+		log.Printf("Hijacking failed: %v", err)
+		http.Error(w, "Internal Error", http.StatusServiceUnavailable)
+		return
+	}
 	defer frontendConn.Close()
 
 	URL := &url.URL{}
@@ -102,6 +107,7 @@ func (s *SDSLBRequest) HijackWebSocket(w http.ResponseWriter, r *http.Request) {
 	err = r.Write(backendConn)
 	if err != nil {
 		log.Printf("Writing WebSocket request to backend server failed: %v", err)
+		http.Error(w, "Internal Error", http.StatusServiceUnavailable)
 		return
 	}
 

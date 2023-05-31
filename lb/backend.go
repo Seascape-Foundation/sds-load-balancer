@@ -65,6 +65,9 @@ func (b *Backend) HeartCheck() {
 
 			client := &http.Client{}
 			request, err = http.NewRequest(b.HBMethod, b.Heartbeat, nil)
+			if err != nil {
+				log.Fatalf("Error to create a heartbeat request: %v", err)
+			}
 			request.Header.Set("User-Agent", "SDSLB-Heartbeat")
 
 			resp, err := client.Do(request)

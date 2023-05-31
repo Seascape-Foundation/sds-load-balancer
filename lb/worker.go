@@ -61,6 +61,10 @@ func execRequest(backend *Backend, r *http.Request) SDSLBRequest {
 
 	client := &http.Client{}
 	httpRequest, err = http.NewRequest(r.Method, requestAddress, r.Body)
+	if err != nil {
+		log.Printf("Failed to create a request: %v", err)
+		return NewWorkerRequestErr(http.StatusRequestTimeout, []byte("No backend available"))
+	}
 
 	for k, vv := range r.Header {
 		for _, v := range vv {
@@ -115,6 +119,7 @@ func (w *Worker) Run(r *http.Request, frontend *Frontend) SDSLBRequestChan {
 		defer func() {
 			if rec := recover(); rec != nil {
 				// Channel is closed can happen
+				log.Printf("Channel is closed, can happen: %v", rec)
 			}
 		}()
 
