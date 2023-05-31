@@ -83,7 +83,7 @@ func (b *Backend) HeartCheck() {
 				}
 				b.RWMutex.Unlock()
 			} else {
-				defer resp.Body.Close()
+				resp.Body.Close()
 
 				// Ok, let's keep working boys
 				b.RWMutex.Lock()
