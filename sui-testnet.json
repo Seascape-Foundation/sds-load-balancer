@@ -2,56 +2,56 @@
     "general": {
         "maxProcs": 4,
         "workerPoolSize": 10,
-        "rpcport": 42555
+        "rpcport": 42556
     },
     "frontends" : [
         {
-            "name" : "Sui Mainnet",
+            "name" : "Sui Testnet",
             "host" : "127.0.0.1",
-            "port" : 8089,
+            "port" : 8088,
             "route" : "/",
             "timeout" : 5000,
             
             "backends" : [
                 {
-                    "name" : "AllThatNode",
-                    "address" : "https://sui-mainnet-rpc.allthatnode.com",
-                    "heartbeat" : "https://sui-mainnet-rpc.allthatnode.com",
+                    "name" : "Block Vision",
+                    "address" : "https://sui-testnet-endpoint.blockvision.org",
+                    "heartbeat" : "https://sui-testnet-endpoint.blockvision.org",
                     "inactiveAfter" : 3,
                     "heartbeatTime" : 5000,
                     "retryTime" : 5000
                 },{
-                    "name" : "TestnetPride",
-                    "address" : "https://sui-rpc-mainnet.testnet-pride.com",
-                    "heartbeat" : "https://sui-rpc-mainnet.testnet-pride.com",
+                    "name" : "Bartestnet",
+                    "address" : "https://sui-testnet-rpc.bartestnet.com",
+                    "heartbeat" : "https://sui-testnet-rpc.bartestnet.com",
                     "inactiveAfter" : 3,
                     "heartbeatTime" : 5000,
                     "retryTime" : 5000
                 },{
                     "name" : "nodeinfra",
-                    "address" : "https://sui-mainnet.nodeinfra.com",
-                    "heartbeat" : "https://sui-mainnet.nodeinfra.com",
+                    "address" : "https://sui-testnet.nodeinfra.com",
+                    "heartbeat" : "https://sui-testnet.nodeinfra.com",
                     "inactiveAfter" : 3,
                     "heartbeatTime" : 5000,
                     "retryTime" : 5000
                 },{
-                    "name" : "chainbase",
-                    "address" : "https://mainnet-rpc.sui.chainbase.online",
-                    "heartbeat" : "https://mainnet-rpc.sui.chainbase.online",
+                    "name" : "Quantnode",
+                    "address" : "https://sui-testnet-fullnode.quantnode.tech",
+                    "heartbeat" : "https://sui-testnet-fullnode.quantnode.tech",
                     "inactiveAfter" : 3,
                     "heartbeatTime" : 5000,
                     "retryTime" : 5000
                 },                {
                     "name" : "cosmostation",
-                    "address" : "https://sui-mainnet-us-2.cosmostation.io",
-                    "heartbeat" : "https://sui-mainnet-us-2.cosmostation.io",
+                    "address" : "https://sui-testnet-us-2.cosmostation.io",
+                    "heartbeat" : "https://sui-testnet-us-2.cosmostation.io",
                     "inactiveAfter" : 3,
                     "heartbeatTime" : 5000,
                     "retryTime" : 5000
                 },{
-                    "name" : "blockvision",
-                    "address" : "https://sui-mainnet-endpoint.blockvision.org",
-                    "heartbeat" : "https://sui-mainnet-endpoint.blockvision.org",
+                    "name" : "Sui (Official)",
+                    "address" : "https://fullnode.testnet.sui.io",
+                    "heartbeat" : "https://fullnode.testnet.sui.io",
                     "inactiveAfter" : 3,
                     "heartbeatTime" : 5000,
                     "retryTime" : 5000
