@@ -79,7 +79,6 @@ func (b *Backend) HeartCheck() {
 					// Ok that guy it's out of the game
 					b.Failed = true
 					b.InactiveTries++
-					log.Printf("The error: %v, status code: %v, %s", err, resp.StatusCode, b.HBMethod)
 					log.Printf("Error to check address [%s] name [%s] tries [%d]", b.Heartbeat, b.Name, b.InactiveTries)
 				}
 				b.RWMutex.Unlock()
