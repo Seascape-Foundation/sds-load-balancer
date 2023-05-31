@@ -11,11 +11,11 @@ import (
 )
 
 var (
-	errNoFrontend  = errors.New("No frontend configuration detected")
-	errNoBackend   = errors.New("No backend configuration detected")
-	errTimeout     = errors.New("Timeout")
-	errPortExists  = errors.New("Port already in use")
-	errRouteExists = errors.New("Route already in use")
+	errNoFrontend  = errors.New("no frontend configuration detected")
+	errNoBackend   = errors.New("no backend configuration detected")
+	errTimeout     = errors.New("timeout")
+	errPortExists  = errors.New("port already in use")
+	errRouteExists = errors.New("route already in use")
 )
 
 type ShutdownChan chan bool
