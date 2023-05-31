@@ -68,7 +68,7 @@ func (b *Backend) HeartCheck() {
 			request.Header.Set("User-Agent", "SSLB-Heartbeat")
 
 			resp, err := client.Do(request)
-			if err != nil || resp.StatusCode >= 400 {
+			if err != nil || resp.StatusCode >= 400 && resp.StatusCode != 404 && resp.StatusCode != 405 {
 				b.RWMutex.Lock()
 				// Max tries before consider inactive
 				if b.InactiveTries >= b.InactiveAfter {
@@ -79,6 +79,7 @@ func (b *Backend) HeartCheck() {
 					// Ok that guy it's out of the game
 					b.Failed = true
 					b.InactiveTries++
+					log.Printf("The error: %v, status code: %v, %s", err, resp.StatusCode, b.HBMethod)
 					log.Printf("Error to check address [%s] name [%s] tries [%d]", b.Heartbeat, b.Name, b.InactiveTries)
 				}
 				b.RWMutex.Unlock()
