@@ -18,7 +18,7 @@ func NewWorker() *Worker {
 	return &Worker{Idle: true}
 }
 
-func processReturn(result *http.Response) SSLBRequest {
+func processReturn(result *http.Response) SDSLBRequest {
 	defer result.Body.Close()
 	body, err := ioutil.ReadAll(result.Body)
 	if err != nil {
@@ -47,7 +47,7 @@ func checkForWebsocket(r *http.Request) bool {
 	return result
 }
 
-func execRequest(backend *Backend, r *http.Request) SSLBRequest {
+func execRequest(backend *Backend, r *http.Request) SDSLBRequest {
 	var httpRequest *http.Request
 	var err error
 
@@ -75,7 +75,7 @@ func execRequest(backend *Backend, r *http.Request) SSLBRequest {
 	}
 
 	if response == nil {
-		return NewWorkerRequestErr(http.StatusBadGateway, []byte("Method Not Supported By SSLB"))
+		return NewWorkerRequestErr(http.StatusBadGateway, []byte("Method Not Supported By SDS Load Balancer"))
 	}
 
 	ret := processReturn(response)
@@ -105,13 +105,13 @@ func preProcessWorker(frontend *Frontend) *Backend {
 	return backendWithMinScore
 }
 
-func (w *Worker) Run(r *http.Request, frontend *Frontend) SSLBRequestChan {
+func (w *Worker) Run(r *http.Request, frontend *Frontend) SDSLBRequestChan {
 	w.Lock()
 	w.Idle = false
 	w.Unlock()
 
-	chanReceiver := make(SSLBRequestChan)
-	go func(w *Worker, c SSLBRequestChan, f *Frontend) {
+	chanReceiver := make(SDSLBRequestChan)
+	go func(w *Worker, c SDSLBRequestChan, f *Frontend) {
 		defer func() {
 			if rec := recover(); rec != nil {
 				// Channel is closed can happen

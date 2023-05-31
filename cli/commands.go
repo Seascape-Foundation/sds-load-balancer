@@ -10,9 +10,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/eduardonunesp/sslb/cfg"
-	"github.com/eduardonunesp/sslb/lb"
-	sslbRPC "github.com/eduardonunesp/sslb/rpc"
+	"github.com/Seascape-Foundation/sds-load-balancer/cfg"
+	"github.com/Seascape-Foundation/sds-load-balancer/lb"
+	sdslbRPC "github.com/Seascape-Foundation/sds-load-balancer/rpc"
 	"github.com/olekukonko/tablewriter"
 )
 
@@ -32,14 +32,14 @@ func InternalStatus(filename string) {
 		configuration.GeneralConfig.RPCPort,
 	)
 
-	log.Println("Start SSLB (Client) ")
+	log.Println("Start SDS Load Balancer (Client)")
 
 	client, err := net.Dial("tcp", address)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	reply := sslbRPC.StatusResponse{}
+	reply := sdslbRPC.StatusResponse{}
 
 	rpcCall := jsonrpc.NewClient(client)
 	err = rpcCall.Call("ServerStatus.GetIdle", 0, &reply)
@@ -64,14 +64,14 @@ func RunServer(verbose bool, filename string) {
 		filename = CONFIG_FILENAME
 	}
 
-	log.Println("Start SSLB (Server) ")
+	log.Println("Start SDS Load Balancer (Server) ")
 	log.Println("Using config:", filename)
 
 	// The function setup do everything for configure
 	// and return the server ready to run
 	configuration := cfg.Setup(filename)
 	server := lb.NewServer(configuration)
-	sslbRPC.StartServer(server)
+	sdslbRPC.StartServer(server)
 
 	log.Println("Prepare to run server ...")
 	server.Run()

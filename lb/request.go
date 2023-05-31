@@ -9,7 +9,7 @@ import (
 	"net/url"
 )
 
-type SSLBRequest struct {
+type SDSLBRequest struct {
 	Header   http.Header
 	Status   int
 	Body     []byte
@@ -17,25 +17,25 @@ type SSLBRequest struct {
 	Backend  *Backend
 }
 
-type SSLBRequestChan chan SSLBRequest
+type SDSLBRequestChan chan SDSLBRequest
 
-func NewWorkerRequestErr(status int, body []byte) SSLBRequest {
-	return SSLBRequest{
+func NewWorkerRequestErr(status int, body []byte) SDSLBRequest {
+	return SDSLBRequest{
 		Status: status,
 		Body:   body,
 	}
 }
 
-func NewWorkerRequest(status int, header http.Header, body []byte) SSLBRequest {
-	return SSLBRequest{
+func NewWorkerRequest(status int, header http.Header, body []byte) SDSLBRequest {
+	return SDSLBRequest{
 		Status: status,
 		Header: header,
 		Body:   body,
 	}
 }
 
-func NewWorkerRequestUpgraded() SSLBRequest {
-	return SSLBRequest{
+func NewWorkerRequestUpgraded() SDSLBRequest {
+	return SDSLBRequest{
 		Upgraded: true,
 	}
 }
@@ -76,7 +76,7 @@ func copyBidir(frontendConn io.ReadWriteCloser, rwFront *bufio.ReadWriter,
 	<-finished
 }
 
-func (s *SSLBRequest) HijackWebSocket(w http.ResponseWriter, r *http.Request) {
+func (s *SDSLBRequest) HijackWebSocket(w http.ResponseWriter, r *http.Request) {
 	hj, ok := w.(http.Hijacker)
 
 	if !ok {

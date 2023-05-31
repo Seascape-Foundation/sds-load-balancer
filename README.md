@@ -1,4 +1,6 @@
-# SSLB (Super Simple Load Balancer) ver 0.1.0
+# SDS Load Balancer ver 0.1.0
+
+Based on [sslb](https://github.com/eduardonunesp/sslb)
 
 It's a Super Simple Load Balancer, just a little project to achieve some kind of performance.
 
@@ -19,25 +21,37 @@ It's a Super Simple Load Balancer, just a little project to achieve some kind of
 
 ## Install
 
-To install type:
+First install the package
 
 ```
-go get github.com/eduardonunesp/sslb
+go get github.com/Seascape-Foundation/sds-load-balancer
 ```
 
-Don't forget to create your configuration file `config.json` at the same directory of project and run it. You can use the command `sslb -c` to create an example of configuration file.
+Then build the project:
+
+**For Windows**:
+```powershell
+go build -o ./sdslb.exe
+```
+
+In other OS:
+```shell
+go build -o ./sdslb
+```
+
+Don't forget to create your configuration file such as `config.json` at the same directory of project and run it. You can use the command `sdslb -c` to create an example of configuration file.
 
 
 ## Usage
-Type `sslb -h` for the command line help
+Type `sdslb -h` for the command line help
 
 ```
-sslb -h                                                                                                                                                              
+sdslb -h                                                                                                                                                              
 NAME:
-   SSLB (github.com/eduardonunesp/sslb) - sslb
+   SDS Load Balancer (github.com/Seascape-Foundation/sds-load-balancer) - sdslb
 
 USAGE:
-   sslb [global options] command [command options] [arguments...]
+   sdslb [global options] command [command options] [arguments...]
 
 VERSION:
    0.1.0
@@ -53,11 +67,11 @@ GLOBAL OPTIONS:
    --version, -v	print the version
 ```
 
-After the configuration file completed you can type only `sslb -b` to start SSLB with verbose mode, that command will log the output from SSLB in console. That will print something like that:
+After the configuration file completed you can type only `sdslb -b` to start sdslb with verbose mode, that command will log the output from sdslb in console. That will print something like that:
 
 ```
-sslb -b                                                                                                                                                               
-2015/10/25 22:58:33 Start SSLB (Server)
+sdslb -b                                                                                                                                                               
+2015/10/25 22:58:33 Start sdslb (Server)
 2015/10/25 22:58:33 Create worker pool with [1000]
 2015/10/25 22:58:33 Prepare to run server ...
 2015/10/25 22:58:33 Setup and check configuration
@@ -149,7 +163,7 @@ modification, are permitted provided that the following conditions are met:
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
 
-* Neither the name of sslb nor the names of its
+* Neither the name of sdslb nor the names of its
   contributors may be used to endorse or promote products derived from
   this software without specific prior written permission.
 

@@ -7,7 +7,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/eduardonunesp/sslb/lb"
+	"github.com/Seascape-Foundation/sds-load-balancer/lb"
 )
 
 const DEFAULT_FILENAME = "config.json"
@@ -25,19 +25,19 @@ func openFile(filename string) []byte {
 		}
 	}
 
-	file, err = ioutil.ReadFile("/etc/sslb/" + DEFAULT_FILENAME)
+	file, err = ioutil.ReadFile("/etc/sdslb/" + DEFAULT_FILENAME)
 	if err == nil {
 		return file
 	}
 
-	file, err = ioutil.ReadFile("~/./sslb/" + DEFAULT_FILENAME)
+	file, err = ioutil.ReadFile("~/./sdslb/" + DEFAULT_FILENAME)
 	if err == nil {
 		return file
 	}
 
 	file, err = ioutil.ReadFile("./" + DEFAULT_FILENAME)
 	if err != nil {
-		log.Fatal("No config file found, in /etc/sslb or ~/.sslb or in current dir")
+		log.Fatal("No config file found, in /etc/sdslb or ~/.sdslb or in current dir")
 	}
 
 	return file

@@ -1,4 +1,4 @@
-module github.com/eduardonunesp/sslb
+module github.com/Seascape-Foundation/sds-load-balancer
 
 go 1.19
 

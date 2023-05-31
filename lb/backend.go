@@ -65,7 +65,7 @@ func (b *Backend) HeartCheck() {
 
 			client := &http.Client{}
 			request, err = http.NewRequest(b.HBMethod, b.Heartbeat, nil)
-			request.Header.Set("User-Agent", "SSLB-Heartbeat")
+			request.Header.Set("User-Agent", "SDSLB-Heartbeat")
 
 			resp, err := client.Do(request)
 			if err != nil || resp.StatusCode >= 400 && resp.StatusCode != 404 && resp.StatusCode != 405 {

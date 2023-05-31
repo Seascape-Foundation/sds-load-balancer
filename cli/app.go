@@ -8,8 +8,8 @@ import (
 )
 
 const (
-	appName      = "SSLB (github.com/eduardonunesp/sslb)"
-	appUsage     = "sslb"
+	appName      = "SDS Load Balancer (github.com/Seascape-Foundation/sds-load-balancer)"
+	appUsage     = "sdslb"
 	versionMajor = "0"
 	versionMinor = "1"
 	versionBuild = "0"
@@ -27,7 +27,7 @@ func getFilename(cmd *cobra.Command) (string, error) {
 
 func CreateAPP() {
 	var rootCmd = &cobra.Command{
-		Use: "sslb",
+		Use: "sdslb",
 		Run: func(cmd *cobra.Command, args []string) {
 			fflags := cmd.Flags()
 			verbose := fflags.Changed("verbose") == true
